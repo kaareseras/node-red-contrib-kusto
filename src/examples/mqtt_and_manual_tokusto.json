@@ -1,0 +1,126 @@
+[
+    {
+        "id": "7b288e6384df780c",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "e2435eb93cd4f511",
+        "type": "inject",
+        "z": "7b288e6384df780c",
+        "name": "Manual insert",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "My topic",
+        "payload": "My payload",
+        "payloadType": "str",
+        "x": 150,
+        "y": 80,
+        "wires": [
+            [
+                "5e01896ceb120c79"
+            ]
+        ]
+    },
+    {
+        "id": "c5f694fb54842ef6",
+        "type": "debug",
+        "z": "7b288e6384df780c",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 570,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "5e01896ceb120c79",
+        "type": "kusto-ingest",
+        "z": "7b288e6384df780c",
+        "kustoConfig": "844433e607e9c9ab",
+        "name": "Ingest",
+        "x": 370,
+        "y": 140,
+        "wires": [
+            [
+                "c5f694fb54842ef6"
+            ]
+        ]
+    },
+    {
+        "id": "d1bba8163141bfeb",
+        "type": "mqtt in",
+        "z": "7b288e6384df780c",
+        "name": "",
+        "topic": "#",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "2eda98758330a052",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 110,
+        "y": 140,
+        "wires": [
+            [
+                "5e01896ceb120c79"
+            ]
+        ]
+    },
+    {
+        "id": "844433e607e9c9ab",
+        "type": "kusto-config",
+        "name": "Cluster 2",
+        "database_name": "HomeAssistant",
+        "table_name": "NodeRed",
+        "buffer_time": "5",
+        "streaming": true
+    },
+    {
+        "id": "2eda98758330a052",
+        "type": "mqtt-broker",
+        "name": "Seras",
+        "broker": "192.168.1.11",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "sessionExpiry": ""
+    }
+]

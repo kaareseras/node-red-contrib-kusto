@@ -1,0 +1,21 @@
+{
+  "name": "node-red-contrib-kusto",
+  "version": "1.0.0",
+  "description": "Ingest messages to Azure Data Explorer aka. kusto",
+  "main": "src/kusto-ingest.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Kåre Seest Rasmussen",
+  "license": "MIT",
+  "node-red": {
+    "nodes": {
+      "kusto-ingest": "src/kusto-ingest.js"
+    }
+  },
+  "dependencies": {
+    "azure-kusto-data": "^3.2.0",
+    "azure-kusto-ingest": "^3.2.0",
+    "azure-arm-kusto": "^3.2.0"
+  }
+}

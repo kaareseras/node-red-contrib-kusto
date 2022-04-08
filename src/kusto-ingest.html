@@ -1,0 +1,99 @@
+<script type="text/javascript">
+    RED.nodes.registerType('kusto-config', {
+        category: 'config',
+        defaults: {
+            name: {value: "Name your connection", required: true},
+            database_name: {value: "", required: true},
+            table_name: {value: "", required: true},
+            buffer_time: {value: 5, required: true},
+            streaming: {},
+        },
+        credentials: {
+            cluster_ingest_uri: {type:"text", required: true},
+            application_id: {type: "text", required: true},
+            application_secrect: {type: "text", required: true},
+            directory_id: {type: "text", required: true},
+        },
+        label: function () {
+            return this.name;
+        }
+    });
+</script>
+
+<script type="text/html" data-template-name="kusto-config">
+    <div class="form-tips" style="margin-bottom: 20px;">
+        <h3>Getting Started:</h3>
+        <p>You need to setup a kusto account.</p>
+
+    </div>
+    <div class="form-row">
+        <label for="node-config-input-name"><i class="fa fa-tag"></i> Cluster Name</label>
+        <input type="text" id="node-config-input-name">
+    </div>
+    <div class="form-row">
+        <label for="node-config-input-cluster_ingest_uri"><i class="fa fa-tag"></i> Cluster ingest URI</label>
+        <input type="text" id="node-config-input-cluster_ingest_uri">
+    </div>
+    <div class="form-row">
+        <label for="node-config-input-database_name"><i class="fa fa-tag"></i> Database Name</label>
+        <input type="text" id="node-config-input-database_name">
+    </div>
+    <div class="form-row">
+        <label for="node-config-input-table_name"><i class="fa fa-tag"></i> Table Name</label>
+        <input type="text" id="node-config-input-table_name">
+    </div>
+    <div class="form-row">
+        <label for="node-config-input-application_id"><i class="fa fa-tag"></i> SP application ID</label>
+        <input type="text" id="node-config-input-application_id">
+    </div>
+    <div class="form-row">
+        <label for="node-config-input-application_secrect"><i class="fa fa-tag"></i> SP application secrect</label>
+        <input type="text" id="node-config-input-application_secrect">
+    </div>
+    <div class="form-row">
+        <label for="node-config-input-directory_id"><i class="fa fa-tag"></i> Directory ID</label>
+        <input type="text" id="node-config-input-directory_id">
+    </div>
+    <div class="form-row">
+        <label for="node-config-input-buffer_time"><i class="fa fa-tag"></i> Buffer time</label>
+        <input type="number" id="node-config-input-buffer_time">
+    </div>
+    <div class="form-row">
+        <label for="node-config-input-streaming"><i class="fa fa-tag"></i> Use Streaming API</label>
+        <input type="checkbox" id="node-config-input-streaming">
+    </div>
+</script>
+
+<script type="text/javascript">
+    RED.nodes.registerType('kusto-ingest',{
+        category: 'function',
+        color: '#a6bbcf',
+        defaults: {
+            kustoConfig: {value: "", type: "kusto-config"},
+            name: {value:""}
+        },
+        inputs:1,
+        outputs:1,
+        icon: "adx.png",
+        label: function() {
+            return this.name||"kusto-ingest";
+        }
+    });
+</script>
+
+<script type="text/html" data-template-name="kusto-ingest">
+    <div class="form-row">
+        <label for="node-input-kustoConfig" style="white-space: nowrap; width: 125px">
+            <i class="icon-tag"></i> Kusto account
+        </label>
+        <input type="text" id="node-input-kustoConfig" placeholder="Select Kusto account">
+    </div>
+    <div class="form-row">
+        <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+</script>
+
+<script type="text/html" data-help-name="kusto-ingest">
+    <p>A node that converts the message payloads into all lower-case characters</p>
+</script>
