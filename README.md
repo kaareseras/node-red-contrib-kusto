@@ -46,9 +46,9 @@ After the creation, copy the **Data ingestion URI** from the top of the page
 ```KQL
 .execute database script <|
 // Add SP ingestor rights
-.add database ['<DatabaseName>'] ingestors ('aadapp=b5253d02-c8f4-4a79-a0f0-818491ba2a1f;72f988bf-86f1-41af-91ab-2d7cd011db47')
+.add database ['<DatabaseName>'] ingestors ('aadapp=b5253d02-c8f4-4a79-a0f0-81xxxxxxx2a1f;72f988bf-xxxxx-41af-xxxxx-2d7cd011db47')
 // Add SP viewers rights
-.add database ['<DatabaseName>'] viewers ('aadapp=b5253d02-c8f4-4a79-a0f0-818491ba2a1f;72f988bf-86f1-41af-91ab-2d7cd011db47')
+.add database ['<DatabaseName>'] viewers ('aadapp=b5253d02-c8f4-4a79-a0f0-81xxxxxxx2a1f;72f988bf-xxxxx-41af-xxxxx-2d7cd011db47')
 //Alter Table batchin ploicy
 .alter database ['<DatabaseName>'] policy ingestionbatching @'{"MaximumBatchingTimeSpan":"00:00:05", "MaximumNumberOfItems": 500, "MaximumRawDataSizeMB": 1024}'
 //Drop table if exists
