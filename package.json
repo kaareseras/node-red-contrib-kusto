@@ -6,6 +6,11 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kaareseras/node-red-contrib-kusto"
+  },
+  "keywords": ["Kusto","ADX","Azure Data Explorer","Node Red","node-red"],
   "author": "Kåre Seest Rasmussen",
   "license": "MIT",
   "node-red": {
