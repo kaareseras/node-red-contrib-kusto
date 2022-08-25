@@ -30,6 +30,7 @@
   },
   "dependencies": {
     "azure-kusto-data": "~3.4.2",
-    "azure-kusto-ingest": "~3.4.2"
+    "azure-kusto-ingest": "~3.4.2",
+    "node-red-contrib-kusto": "^1.0.8"
   }
 }
