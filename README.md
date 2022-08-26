@@ -57,7 +57,22 @@ After the creation, copy the **Data ingestion URI** from the top of the page
 .create table ['<TableName>'] (timestamp: datetime, topic: dynamic, payload: dynamic)
 //Create JSON mapping
 .create table ['<TableName>'] ingestion json mapping 'nodered_json_mapping' '[{"column":"timestamp","path":"$.timestamp"},{"column":"topic","path":"$.topic"},{"column":"payload","path":"$.payload"}]'
+```
 
+If only some af the payload needs to be stored, this example will extract only the needed part as it reaches Azure Data Explorer:
+
+```KQL
+{"column":"part_of_payload","path":"$.payload.key_in_payload"} 
+```
+you can extact a part of the json payload and put it in a seperate column.
+
+Example (KNX messages via MQTT and use node-red to store them in ADX):
+
+```KQL
+//Create table
+.create table ['knx'] (timestamp: datetime, topic: dynamic, GA: dynamic, val: decimal, knx_textual: dynamic, knx_src_addr: dynamic, knx_dpt: dynamic, payload: dynamic)
+//Create JSON mapping
+.create table ['knx'] ingestion json mapping 'nodered_json_mapping' '[{"column":"timestamp","path":"$.timestamp"},{"column":"topic","path":"$.topic"},{"column":"GA","path":"$.payload.GA"},{"column":"val","path":"$.payload.val"},{"column":"knx_textual","path":"$.payload.knx_textual"},{"column":"knx_src_addr","path":"$.payload.knx_src_addr"},{"column":"knx_dpt","path":"$.payload.knx_dpt"},{"column":"payload","path":"$.payload"}]'
 ```
 
 ## Configuration
